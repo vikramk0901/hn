@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color="hn">
+    <ion-title>Hacker News</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="fetchTopStories($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list class="hn-list">
+    <ion-item no-margin text-wrap *ngFor="let item of stories">
+      <h3 (click)="openPost(item)" color="dark">
+        <span [innerHTML]="item.title"></span>
+        <small>({{item.domain}})</small>
+      </h3>
+
+      <small (click)="fetchComments(item)">
+        <ion-badge color="hn">
+          <ion-icon name="flame"></ion-icon>
+          {{item.score}}
+        </ion-badge> &nbsp;
+        <ion-icon color="grey" name="person"></ion-icon> {{item.by}} &nbsp;
+        <ion-icon color="grey" name="time"></ion-icon> {{item.ago}} &nbsp;
+        <ion-icon color="grey" name="chatboxes"></ion-icon>
+      </small>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

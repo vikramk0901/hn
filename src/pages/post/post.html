@@ -1,0 +1,41 @@
+<!--
+  Generated template for the PostPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="hn">
+    <ion-title>
+      Story by {{item.by}}
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h3 [innerHTML]="item.title"></h3>
+  <small>
+    <ion-badge color="hn">
+      <ion-icon name="flame"></ion-icon>
+      {{item.score}}
+    </ion-badge> &nbsp;
+    <ion-icon color="grey" name="person"></ion-icon> {{item.by}} &nbsp;
+    <ion-icon color="grey" name="time"></ion-icon> {{item.ago}}
+  </small>
+  <hr>
+  <div *ngFor="let comment of comments">
+    <small>
+      <ion-icon color="grey" name="person"></ion-icon> {{comment.by}} &nbsp;
+      <ion-icon color="grey" name="time"></ion-icon> {{comment.ago}}
+    </small>
+    <div padding-bottom>
+      <small [innerHTML]="comment.text"></small>
+    </div>
+    <div padding-left>
+
+    </div>
+  </div>
+</ion-content>
