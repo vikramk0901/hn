@@ -1,3 +1,4 @@
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { RestProvider } from "./../../providers/rest/rest";
 import { Component } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
@@ -20,7 +21,8 @@ export class PostPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public rest: RestProvider
+    public rest: RestProvider,
+    public iab: InAppBrowser
   ) {
     this.item = this.navParams.get("item");
   }
@@ -32,6 +34,13 @@ export class PostPage {
           return comment.text;
         });
       });
+    }
+  }
+
+  openPost(item) {
+    if (item.url) {
+      const browser = this.iab.create(item.url, "_blank");
+      browser.show();
     }
   }
 
