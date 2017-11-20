@@ -52,6 +52,10 @@ export class HomePage {
     });
   }
 
+  trackByFn(index, item) {
+    return item.id; // or item.id
+  }
+
   // TODO : move this to utilities function
   openPost(item) {
     if (item.url) {

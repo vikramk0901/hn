@@ -59,6 +59,10 @@ export class JobPage {
     });
   }
 
+  trackByFn(index, item) {
+    return item.id; // or item.id
+  }
+
   openPost(item) {
     if (item.url) {
       const browser = this.iab.create(item.url, "_blank");

@@ -19,7 +19,7 @@
   </ion-refresher>
 
   <ion-list class="hn-list">
-    <ion-item no-margin text-wrap *ngFor="let item of stories, let i = index">
+    <ion-item no-margin text-wrap *ngFor="let item of stories;trackBy: trackByFn; let i = index">
       <h3 (click)="openPost(item)" color="dark">
         <span class="grey">{{i+1}}. </span>
         <span [innerHTML]="item.title"></span>
