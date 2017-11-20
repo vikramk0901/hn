@@ -26,16 +26,5 @@
     <ion-icon color="grey" name="time"></ion-icon> {{item.ago}}
   </small>
   <hr>
-  <div *ngFor="let comment of comments">
-    <small>
-      <ion-icon color="grey" name="person"></ion-icon> {{comment.by}} &nbsp;
-      <ion-icon color="grey" name="time"></ion-icon> {{comment.ago}}
-    </small>
-    <div padding-bottom>
-      <small [innerHTML]="comment.text"></small>
-    </div>
-    <div padding-left>
-
-    </div>
-  </div>
+  <hacker-comment [kids]="item.kids"></hacker-comment>
 </ion-content>
