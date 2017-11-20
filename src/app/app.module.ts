@@ -21,6 +21,7 @@ import { JobPage } from "./../pages/job/job";
 import { ShowPage } from "./../pages/show/show";
 import { AskPage } from "./../pages/ask/ask";
 import { NewPage } from "./../pages/new/new";
+import { ComponentsModule } from "../components/components.module";
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { NewPage } from "./../pages/new/new";
     BrowserModule,
     HttpClientModule,
     PipesModule,
+    ComponentsModule,
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true
     })

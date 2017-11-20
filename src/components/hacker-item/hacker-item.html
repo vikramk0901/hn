@@ -1,0 +1,20 @@
+<!-- Generated template for the HackerItemComponent component -->
+<div>
+  <ion-item no-margin text-wrap>
+    <h3 (click)="openPost(hackerItem)" color="dark">
+      <span class="grey">{{pos+1}}. </span>
+      <span [innerHTML]="hackerItem.title"></span>
+      <small *ngIf="hackerItem.domain">({{hackerItem.domain}})</small>
+    </h3>
+
+    <small (click)="fetchComments(hackerItem)">
+      <ion-badge color="hn">
+        <ion-icon name="flame"></ion-icon>
+        {{hackerItem.score}}
+      </ion-badge> &nbsp;
+      <ion-icon color="grey" name="person"></ion-icon> {{hackerItem.by}} &nbsp;
+      <ion-icon color="grey" name="time"></ion-icon> {{hackerItem.ago}} &nbsp;
+      <ion-icon color="grey" name="chatboxes"></ion-icon>
+    </small>
+  </ion-item>
+</div>

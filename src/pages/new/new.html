@@ -19,23 +19,9 @@
   </ion-refresher>
 
   <ion-list class="hn-list">
-    <ion-item no-margin text-wrap *ngFor="let item of stories;trackBy: trackByFn; let i = index">
-      <h3 (click)="openPost(item)" color="dark">
-        <span class="grey">{{i+1}}. </span>
-        <span [innerHTML]="item.title"></span>
-        <small *ngIf="item.domain">({{item.domain}})</small>
-      </h3>
-
-      <small (click)="fetchComments(item)">
-        <ion-badge color="hn">
-          <ion-icon name="flame"></ion-icon>
-          {{item.score}}
-        </ion-badge> &nbsp;
-        <ion-icon color="grey" name="person"></ion-icon> {{item.by}} &nbsp;
-        <ion-icon color="grey" name="time"></ion-icon> {{item.ago}} &nbsp;
-        <ion-icon color="grey" name="chatboxes"></ion-icon>
-      </small>
-    </ion-item>
+    <div *ngFor="let item of stories;trackBy: trackByFn; let i = index">
+      <hacker-item (onPostClick)="openPost($event)" (onFetchComments)="fetchComments($event)" [pos]="i" [item]="item"></hacker-item>
+    </div>
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>

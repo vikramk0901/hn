@@ -16,7 +16,7 @@
 
 
 <ion-content padding>
-  <h3 [innerHTML]="item.title"></h3>
+  <h3 (click)="openPost(item)" [innerHTML]="item.title"></h3>
   <small>
     <ion-badge color="hn">
       <ion-icon name="flame"></ion-icon>
