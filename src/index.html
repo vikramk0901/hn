@@ -33,10 +33,10 @@
     document.onclick = function (e) {
       e = e || window.event;
       var element = e.target || e.srcElement;
-
-      if (element.tagName == 'A') {
-        window.open(element.href, "_blank", "location=yes");
-        return false;
+      // TODO : Open dynamic external links in InAppBrowser
+      if (element.tagName == 'A' && element.href !== '#') {
+        // window.open(element.href, "_blank", "location=yes");
+        // return false;
       }
     };
 

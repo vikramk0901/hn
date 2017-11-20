@@ -1,22 +1,29 @@
-import { PostPage } from "./../post/post";
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 import { Component } from "@angular/core";
 import { NavController } from "ionic-angular";
+import { PostPage } from "../post/post";
 import { RestProvider } from "../../providers/rest/rest";
-import { InAppBrowser } from "@ionic-native/in-app-browser";
 import * as _ from "lodash";
 
+/**
+ * Generated class for the NewPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
 @Component({
-  selector: "page-home",
-  templateUrl: "home.html"
+  selector: "page-new",
+  templateUrl: "new.html"
 })
-export class HomePage {
+export class NewPage {
   constructor(
     public navCtrl: NavController,
     public rest: RestProvider,
     public iab: InAppBrowser
   ) {}
   public stories = [];
-  public storyType = "topstories";
+  public storyType = "newstories";
   ionViewDidLoad() {
     this.fetchTopStories(null);
   }
@@ -52,7 +59,6 @@ export class HomePage {
     });
   }
 
-  // TODO : move this to utilities function
   openPost(item) {
     if (item.url) {
       const browser = this.iab.create(item.url, "_blank");

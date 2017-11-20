@@ -16,9 +16,26 @@ import { SplashScreen } from "@ionic-native/splash-screen";
 import { RestProvider } from "../providers/rest/rest";
 import { PipesModule } from "../pipes/pipes.module";
 import { InAppBrowser } from "@ionic-native/in-app-browser";
+import { BestPage } from "../pages/best/best";
+import { JobPage } from "./../pages/job/job";
+import { ShowPage } from "./../pages/show/show";
+import { AskPage } from "./../pages/ask/ask";
+import { NewPage } from "./../pages/new/new";
 
 @NgModule({
-  declarations: [MyApp, AboutPage, ContactPage, HomePage, TabsPage, PostPage],
+  declarations: [
+    MyApp,
+    AboutPage,
+    ContactPage,
+    HomePage,
+    TabsPage,
+    PostPage,
+    BestPage,
+    NewPage,
+    AskPage,
+    ShowPage,
+    JobPage
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -34,7 +51,12 @@ import { InAppBrowser } from "@ionic-native/in-app-browser";
     ContactPage,
     HomePage,
     TabsPage,
-    PostPage
+    PostPage,
+    BestPage,
+    NewPage,
+    AskPage,
+    ShowPage,
+    JobPage
   ],
   providers: [
     StatusBar,

@@ -27,7 +27,7 @@ export class PostPage {
 
   ionViewDidLoad() {
     if (this.item.kids && this.item.kids.length > 0) {
-      this.rest.getComments(this.item.kids).subscribe(data => {
+      this.rest.fetchItems(this.item.kids).subscribe(data => {
         this.comments = data.filter(comment => {
           return comment.text;
         });

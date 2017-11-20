@@ -17,14 +17,11 @@ import * as moment from "moment";
 @Injectable()
 export class RestProvider {
   private api = "https://hacker-news.firebaseio.com/v0";
-  items = [];
-  posts = [];
+  items = {};
 
-  constructor(public http: HttpClient) {
-    console.log("Hello RestProvider Provider");
-  }
+  constructor(public http: HttpClient) {}
 
-  getComments(ids): Observable<any[]> {
+  fetchItems(ids): Observable<any[]> {
     return Observable.forkJoin(
       ids.map((id: any) => {
         return this.http
@@ -38,11 +35,16 @@ export class RestProvider {
     );
   }
 
-  getPosts(): Observable<any[]> {
+  getItems(type): any[] {
+    return this.items[type];
+  }
+
+  getPosts(type): Observable<any[]> {
     return this.http
-      .get(`${this.api}/topstories.json?print=pretty`)
+      .get(`${this.api}/${type}.json?print=pretty`)
       .map((res: any) => {
-        this.items = _.union(this.items, res);
+        this.items[type] = this.items[type] || [];
+        this.items[type] = _.union(this.items[type], res);
         return res.slice(0, 20);
       })
       .mergeMap((ids: string[]) => {
@@ -62,20 +64,11 @@ export class RestProvider {
       });
   }
 
-  loadMore(nextId) {
-    let indexOf = this.items.indexOf(nextId) + 1;
-    let ids = this.items.slice(indexOf, indexOf + 20);
-    return Observable.forkJoin(
-      ids.map((id: any) => {
-        return this.http
-          .get(`${this.api}/item/${id}.json?print=pretty`)
-          .map((res: any) => {
-            let story: any = res;
-            story = this.sanitizePost(story);
-            return story;
-          });
-      })
-    );
+  //TODO : Handle gracefully if nextId doesn't exists
+  loadMore(type, nextId) {
+    let indexOf = this.items[type].indexOf(nextId) + 1;
+    let ids = this.items[type].slice(indexOf, indexOf + 20);
+    return this.fetchItems(ids);
   }
 
   sanitizePost(story) {
